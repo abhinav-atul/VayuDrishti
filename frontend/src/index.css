@@ -684,6 +684,47 @@ body {
   padding: 4px 0;
 }
 
+/* ─── Map Controls (Zoom / Compass) ────────────────────────────── */
+.maplibregl-ctrl-bottom-right {
+  bottom: 20px !important;
+  right: 200px !important;
+}
+
+.maplibregl-ctrl-group {
+  background: var(--glass-bg-strong) !important;
+  backdrop-filter: var(--blur-strong) !important;
+  -webkit-backdrop-filter: var(--blur-strong) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--glass-shadow-outer) !important;
+  overflow: hidden !important;
+}
+
+.maplibregl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  background: transparent !important;
+  transition: var(--transition) !important;
+}
+
+.maplibregl-ctrl-group button:last-child {
+  border-bottom: none !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.maplibregl-ctrl-group button:active {
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.maplibregl-ctrl-icon {
+  filter: opacity(0.75) contrast(1.2);
+}
+
 .map-popup__title {
   font-size: 0.85rem;
   font-weight: 600;

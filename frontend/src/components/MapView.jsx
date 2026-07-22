@@ -108,6 +108,29 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
     400, "#991b1b",  // Severe
   ];
 
+  const mapStyle = {
+    version: 8,
+    sources: {
+      satellite: {
+        type: "raster",
+        tiles: [
+          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        ],
+        tileSize: 256,
+        attribution: "Tiles &copy; Esri"
+      }
+    },
+    layers: [
+      {
+        id: "satellite",
+        type: "raster",
+        source: "satellite",
+        minzoom: 0,
+        maxzoom: 22
+      }
+    ]
+  };
+
   return (
     <Map
       ref={mapRef}
@@ -118,7 +141,7 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
         pitch: 0,
       }}
       style={{ width: "100%", height: "100%" }}
-      mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+      mapStyle={mapStyle}
       onClick={handleClick}
       cursor={loading ? "wait" : "crosshair"}
       attributionControl={false}
@@ -140,7 +163,7 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
             id="grid-outline"
             type="line"
             paint={{
-              "line-color": "rgba(0, 0, 0, 0.04)",
+              "line-color": "rgba(255, 255, 255, 0.15)",
               "line-width": 0.5,
             }}
           />
@@ -180,8 +203,8 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
             "text-allow-overlap": false,
           }}
           paint={{
-            "text-color": "#1a1a1a",
-            "text-halo-color": "rgba(255, 255, 255, 0.9)",
+            "text-color": "#ffffff",
+            "text-halo-color": "rgba(0, 0, 0, 0.8)",
             "text-halo-width": 1.5,
           }}
         />

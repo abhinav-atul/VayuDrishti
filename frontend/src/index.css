@@ -744,7 +744,7 @@ body {
 .chat-toggle {
   position: fixed;
   bottom: 24px;
-  right: 414px;
+  right: 24px;
   z-index: 100;
   width: 54px;
   height: 54px;
@@ -777,7 +777,7 @@ body {
 .chat-panel {
   position: fixed;
   bottom: 90px;
-  right: 414px;
+  right: 24px;
   z-index: 100;
   width: 380px;
   height: 480px;

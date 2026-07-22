@@ -5,8 +5,7 @@ import { aqiColor, aqiBadgeClass, aqiCategory } from "../aqiUtils";
  * Sidebar — Station list, model stats, selected point details, feature importance.
  * Glassmorphism design with frosted glass cards and soft pastel tints.
  */
-export default function Sidebar({ stations, selectedPoint, metrics, onStationClick }) {
-  const [tab, setTab] = useState("overview");
+export default function Sidebar({ stations, selectedPoint, metrics, onStationClick, tab }) {
 
   // Sort stations by AQI (worst first)
   const sortedStations = useMemo(() => {
@@ -41,30 +40,6 @@ export default function Sidebar({ stations, selectedPoint, metrics, onStationCli
 
   return (
     <>
-      {/* Segmented Control Tabs */}
-      <div className="tabs">
-        <div className="tabs__container">
-          <button
-            className={`tab ${tab === "overview" ? "tab--active" : ""}`}
-            onClick={() => setTab("overview")}
-          >
-            Overview
-          </button>
-          <button
-            className={`tab ${tab === "stations" ? "tab--active" : ""}`}
-            onClick={() => setTab("stations")}
-          >
-            Stations
-          </button>
-          <button
-            className={`tab ${tab === "model" ? "tab--active" : ""}`}
-            onClick={() => setTab("model")}
-          >
-            Model
-          </button>
-        </div>
-      </div>
-
       <div className="sidebar-content">
         {/* ─── OVERVIEW TAB ─── */}
         {tab === "overview" && (

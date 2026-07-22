@@ -195,6 +195,96 @@ body {
   font-weight: 600;
 }
 
+/* ─── Legend ──────────────────────────────────────────────────────── */
+.legend {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-outer);
+  font-size: 0.8rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legend__title {
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.legend__scale {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 240px;
+}
+
+.legend__scale-segment {
+  flex: 1;
+}
+
+.legend__labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* ─── Chat Feature ──────────────────────────────────────────────── */
+.chat-toggle {
+  position: absolute;
+  bottom: 120px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-outer);
+  color: var(--text-accent);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: var(--transition-bounce);
+}
+
+.chat-toggle:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--glass-shadow-outer), 0 10px 20px rgba(74, 158, 142, 0.2);
+}
+
+.chat-panel {
+  position: absolute;
+  bottom: 190px;
+  right: 24px;
+  width: 360px;
+  height: 400px;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow-outer);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+}
+
 .top-nav__right {
   display: flex;
   align-items: center;

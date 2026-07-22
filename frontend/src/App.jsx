@@ -14,6 +14,8 @@ export default function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [tab, setTab] = useState("overview");
+  const [mapTheme, setMapTheme] = useState("light");
 
   // Load all data on mount
   useEffect(() => {
@@ -73,6 +75,7 @@ export default function App() {
             fires={fires}
             selectedPoint={selectedPoint}
             onMapClick={handleMapClick}
+            mapTheme={mapTheme}
           />
         )}
       </div>
@@ -83,17 +86,23 @@ export default function App() {
           <span className="top-nav__logo">🌬️</span>
           <span className="top-nav__title">VayuDrishti</span>
         </div>
-        <div className="top-nav__links">
-          <span className="top-nav__link top-nav__link--active">Dashboard</span>
-          <span className="top-nav__link">Monitoring</span>
-          <span className="top-nav__link">Forecasting</span>
-        </div>
-        <div className="top-nav__right">
-          <div className="top-nav__search">
-            <span>🔍</span>
-            <input type="text" placeholder="Search location..." />
+        
+        <div className="tabs" style={{ padding: 0, width: '320px' }}>
+          <div className="tabs__container">
+            <button className={`tab ${tab === "overview" ? "tab--active" : ""}`} onClick={() => setTab("overview")}>Overview</button>
+            <button className={`tab ${tab === "stations" ? "tab--active" : ""}`} onClick={() => setTab("stations")}>Stations</button>
+            <button className={`tab ${tab === "model" ? "tab--active" : ""}`} onClick={() => setTab("model")}>Model</button>
           </div>
-          <div className="top-nav__profile">AA</div>
+        </div>
+
+        <div className="top-nav__right">
+          <button 
+            className="tab tab--active" 
+            style={{ padding: '8px 16px', fontSize: '0.8rem', border: '1px solid var(--glass-border)' }}
+            onClick={() => setMapTheme(mapTheme === "light" ? "satellite" : "light")}
+          >
+            {mapTheme === "light" ? "🗺️ Satellite" : "🗺️ Light Map"}
+          </button>
         </div>
       </div>
 
@@ -104,6 +113,7 @@ export default function App() {
           selectedPoint={selectedPoint}
           metrics={metrics}
           onStationClick={handleStationClick}
+          tab={tab}
         />
       </div>
 

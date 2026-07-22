@@ -865,6 +865,14 @@ body {
   animation: msgFadeIn 0.3s ease;
 }
 
+.chat-message p {
+  margin: 0;
+}
+
+.chat-message p:not(:last-child) {
+  margin-bottom: 8px;
+}
+
 @keyframes msgFadeIn {
   from {
     opacity: 0;

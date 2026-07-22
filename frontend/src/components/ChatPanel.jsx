@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import { sendChatMessage } from "../api";
 
 /**
@@ -76,7 +77,7 @@ export default function ChatPanel({ selectedPoint, onClose }) {
             key={i}
             className={`chat-message chat-message--${msg.role === "user" ? "user" : "assistant"}`}
           >
-            {msg.content}
+            <ReactMarkdown>{msg.content}</ReactMarkdown>
           </div>
         ))}
         {sending && (

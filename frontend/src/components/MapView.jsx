@@ -118,7 +118,7 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
         pitch: 0,
       }}
       style={{ width: "100%", height: "100%" }}
-      mapStyle="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
+      mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
       onClick={handleClick}
       cursor={loading ? "wait" : "crosshair"}
       attributionControl={false}
@@ -140,7 +140,7 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
             id="grid-outline"
             type="line"
             paint={{
-              "line-color": "rgba(255, 255, 255, 0.04)",
+              "line-color": "rgba(0, 0, 0, 0.04)",
               "line-width": 0.5,
             }}
           />
@@ -167,7 +167,7 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
             "circle-color": ["get", "color"],
             "circle-opacity": 0.9,
             "circle-stroke-width": 1.5,
-            "circle-stroke-color": "rgba(255, 255, 255, 0.6)",
+            "circle-stroke-color": "rgba(255, 255, 255, 0.9)",
           }}
         />
         <Layer
@@ -175,14 +175,14 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
           type="symbol"
           layout={{
             "text-field": ["to-string", ["get", "aqi"]],
-            "text-size": 9,
-            "text-offset": [0, -1.5],
+            "text-size": 10,
+            "text-offset": [0, -1.6],
             "text-allow-overlap": false,
           }}
           paint={{
-            "text-color": "#ffffff",
-            "text-halo-color": "rgba(0, 0, 0, 0.8)",
-            "text-halo-width": 1,
+            "text-color": "#1a1a1a",
+            "text-halo-color": "rgba(255, 255, 255, 0.9)",
+            "text-halo-width": 1.5,
           }}
         />
       </Source>

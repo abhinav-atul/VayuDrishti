@@ -59,35 +59,8 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* Background Map Layer */}
       <div className="app__map">
-        {/* Logo Header */}
-        <div className="header">
-          <span className="header__icon">🌬️</span>
-          <div>
-            <div className="header__title">VayuDrishti</div>
-            <div className="header__subtitle">Hyperlocal Air Quality Intelligence</div>
-          </div>
-        </div>
-
-        {/* Map Info Badges */}
-        <div className="map-info">
-          <div className="map-info__badge">
-            <span className="map-info__dot" style={{ background: "#10b981" }} />
-            {stations.length} Stations
-          </div>
-          <div className="map-info__badge">
-            <span className="map-info__dot" style={{ background: "#f97316" }} />
-            {fires.length} Fire Hotspots
-          </div>
-          {gridData && (
-            <div className="map-info__badge">
-              <span className="map-info__dot" style={{ background: "#22d3ee" }} />
-              {gridData.features?.length || 0} Grid Cells
-            </div>
-          )}
-        </div>
-
-        {/* Main Map */}
         {loading ? (
           <div className="loading">
             <div className="loading__spinner" />
@@ -102,30 +75,29 @@ export default function App() {
             onMapClick={handleMapClick}
           />
         )}
-
-        {/* AQI Legend */}
-        <AQILegend />
-
-        {/* Chat Toggle */}
-        <button
-          className="chat-toggle"
-          onClick={() => setChatOpen(!chatOpen)}
-          title="Air Quality Advisory"
-          id="chat-toggle-btn"
-        >
-          {chatOpen ? "✕" : "💬"}
-        </button>
-
-        {/* Chat Panel */}
-        {chatOpen && (
-          <ChatPanel
-            selectedPoint={selectedPoint}
-            onClose={() => setChatOpen(false)}
-          />
-        )}
       </div>
 
-      {/* Sidebar */}
+      {/* Top Navbar */}
+      <div className="top-nav">
+        <div className="top-nav__brand">
+          <span className="top-nav__logo">🌬️</span>
+          <span className="top-nav__title">VayuDrishti</span>
+        </div>
+        <div className="top-nav__links">
+          <span className="top-nav__link top-nav__link--active">Dashboard</span>
+          <span className="top-nav__link">Monitoring</span>
+          <span className="top-nav__link">Forecasting</span>
+        </div>
+        <div className="top-nav__right">
+          <div className="top-nav__search">
+            <span>🔍</span>
+            <input type="text" placeholder="Search location..." />
+          </div>
+          <div className="top-nav__profile">AA</div>
+        </div>
+      </div>
+
+      {/* Floating Sidebar Panel */}
       <div className="app__sidebar">
         <Sidebar
           stations={stations}
@@ -134,6 +106,45 @@ export default function App() {
           onStationClick={handleStationClick}
         />
       </div>
+
+      {/* Map Info Badges (moved to top right under navbar) */}
+      <div className="map-info" style={{ top: '90px' }}>
+        <div className="map-info__badge">
+          <span className="map-info__dot" style={{ background: "#10b981" }} />
+          {stations.length} Stations
+        </div>
+        <div className="map-info__badge">
+          <span className="map-info__dot" style={{ background: "#f97316" }} />
+          {fires.length} Fire Hotspots
+        </div>
+        {gridData && (
+          <div className="map-info__badge">
+            <span className="map-info__dot" style={{ background: "#22d3ee" }} />
+            {gridData.features?.length || 0} Grid Cells
+          </div>
+        )}
+      </div>
+
+      {/* AQI Legend */}
+      <AQILegend />
+
+      {/* Chat Toggle & Panel */}
+      <button
+        className="chat-toggle"
+        onClick={() => setChatOpen(!chatOpen)}
+        title="Air Quality Advisory"
+        id="chat-toggle-btn"
+      >
+        {chatOpen ? "✕" : "💬"}
+      </button>
+
+      {/* Chat Panel */}
+      {chatOpen && (
+        <ChatPanel
+          selectedPoint={selectedPoint}
+          onClose={() => setChatOpen(false)}
+        />
+      )}
     </div>
   );
 }

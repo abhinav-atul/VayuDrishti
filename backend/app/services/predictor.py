@@ -214,9 +214,20 @@ def predict_grid(feature_df: pd.DataFrame) -> list[GridCell]:
         # Fallback: use IDW interpolation directly
         predictions = feature_df["idw_pm25"].values
 
+    blend_radius = 2.5  # km
     cells = []
     for i, row in feature_df.iterrows():
         pm25 = float(predictions[i] if isinstance(i, int) else predictions[list(feature_df.index).index(i)])
+        
+        # Distance-based blending (snap to ground truth)
+        dist = float(row["nearest_station_dist_km"])
+        station_pm25 = float(row["nearest_station_pm25"])
+        if dist < blend_radius:
+            # Exponential decay weight works slightly better than linear
+            # weight = 1.0 at dist=0, approaches 0 at blend_radius
+            weight = ((blend_radius - dist) / blend_radius) ** 1.5
+            pm25 = (weight * station_pm25) + ((1.0 - weight) * pm25)
+
         aqi = _pm25_to_aqi(pm25)
 
         cells.append(GridCell(
@@ -261,6 +272,14 @@ def predict_point(
         pm25 = max(0, min(500, pm25))
     else:
         pm25 = float(row["idw_pm25"])
+
+    # Distance-based blending (snap to ground truth)
+    blend_radius = 2.5  # km
+    dist = float(row["nearest_station_dist_km"])
+    station_pm25 = float(row["nearest_station_pm25"])
+    if dist < blend_radius:
+        weight = ((blend_radius - dist) / blend_radius) ** 1.5
+        pm25 = (weight * station_pm25) + ((1.0 - weight) * pm25)
 
     aqi = _pm25_to_aqi(pm25)
 

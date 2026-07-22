@@ -112,14 +112,18 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
     <Map
       ref={mapRef}
       initialViewState={{
-        longitude: 77.1025,
+        longitude: 77.209,
         latitude: 28.6139,
-        zoom: 10.5,
+        zoom: 10,
         pitch: 0,
+        bearing: 0,
       }}
       style={{ width: "100%", height: "100%" }}
-      mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+      mapStyle={mapTheme === "satellite" 
+        ? "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json" 
+        : "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"}
       onClick={handleClick}
+      interactiveLayerIds={["grid-fill", "stations-layer"]}
       cursor={loading ? "wait" : "crosshair"}
       attributionControl={false}
     >

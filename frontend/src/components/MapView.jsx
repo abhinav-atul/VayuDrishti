@@ -12,7 +12,30 @@ import { fetchPointEstimate } from "../api";
  * 3. VIIRS fire hotspot markers
  * 4. Click-anywhere point estimate popup
  */
-export default function MapView({ gridData, stations, fires, selectedPoint, onMapClick }) {
+const SATELLITE_STYLE = {
+  version: 8,
+  sources: {
+    "esri-satellite": {
+      type: "raster",
+      tiles: [
+        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+      ],
+      tileSize: 256,
+      attribution: "Esri, Maxar, Earthstar Geographics"
+    }
+  },
+  layers: [
+    {
+      id: "esri-satellite-layer",
+      type: "raster",
+      source: "esri-satellite",
+      minzoom: 0,
+      maxzoom: 19
+    }
+  ]
+};
+
+export default function MapView({ gridData, stations, fires, selectedPoint, onMapClick, mapTheme }) {
   const mapRef = useRef(null);
   const [popup, setPopup] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -112,18 +135,14 @@ export default function MapView({ gridData, stations, fires, selectedPoint, onMa
     <Map
       ref={mapRef}
       initialViewState={{
-        longitude: 77.209,
+        longitude: 77.1025,
         latitude: 28.6139,
-        zoom: 10,
+        zoom: 10.5,
         pitch: 0,
-        bearing: 0,
       }}
       style={{ width: "100%", height: "100%" }}
-      mapStyle={mapTheme === "satellite" 
-        ? "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json" 
-        : "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"}
+      mapStyle={mapTheme === "satellite" ? SATELLITE_STYLE : "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"}
       onClick={handleClick}
-      interactiveLayerIds={["grid-fill", "stations-layer"]}
       cursor={loading ? "wait" : "crosshair"}
       attributionControl={false}
     >

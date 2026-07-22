@@ -20,8 +20,8 @@
   /* Background Gradients */
   --bg-gradient: linear-gradient(145deg, #e8f0f2 0%, #f0eef5 30%, #f5eff0 60%, #eef3f0 100%);
   --bg-mesh: radial-gradient(ellipse at 20% 50%, rgba(190, 227, 219, 0.35) 0%, transparent 55%),
-             radial-gradient(ellipse at 80% 20%, rgba(219, 201, 226, 0.3) 0%, transparent 50%),
-             radial-gradient(ellipse at 60% 80%, rgba(237, 206, 212, 0.3) 0%, transparent 50%);
+    radial-gradient(ellipse at 80% 20%, rgba(219, 201, 226, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(237, 206, 212, 0.3) 0%, transparent 50%);
 
   /* Glass */
   --glass-bg: rgba(255, 255, 255, 0.6);
@@ -73,7 +73,9 @@
 }
 
 /* ─── Base ──────────────────────────────────────────────────────── */
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -160,7 +162,7 @@ body {
 
 .top-nav__logo {
   font-size: 1.4rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .top-nav__title {
@@ -198,8 +200,8 @@ body {
 /* ─── Legend ──────────────────────────────────────────────────────── */
 .legend-wrapper {
   position: absolute;
-  bottom: 20px;
-  right: 85px;
+  bottom: 24px;
+  right: 90px;
   z-index: 20;
   display: flex;
   flex-direction: column;
@@ -228,7 +230,7 @@ body {
 
 .legend-toggle:hover {
   transform: translateY(-2px);
-  box-shadow: var(--glass-shadow-outer), 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: var(--glass-shadow-outer), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .legend-toggle__gradient {
@@ -376,7 +378,7 @@ body {
 
 .header__icon {
   font-size: 1.5rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .header__title {
@@ -415,7 +417,6 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 16px;
-  padding-bottom: 36px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -445,7 +446,7 @@ body {
   -webkit-backdrop-filter: var(--blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 16px 18px;
+  padding: 18px;
   box-shadow: var(--glass-shadow-outer);
   transition: var(--transition);
   position: relative;
@@ -458,8 +459,9 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   pointer-events: none;
 }
 
@@ -529,16 +531,39 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: var(--glass-shadow-inner);
 }
 
-.aqi-badge--good { background: rgba(46, 204, 113, 0.18); color: #1a8a50; }
-.aqi-badge--satisfactory { background: rgba(124, 179, 66, 0.18); color: #5a8c2a; }
-.aqi-badge--moderate { background: rgba(226, 167, 30, 0.18); color: #b5851a; }
-.aqi-badge--poor { background: rgba(230, 126, 34, 0.18); color: #c46614; }
-.aqi-badge--very-poor { background: rgba(231, 76, 60, 0.18); color: #c0392b; }
-.aqi-badge--severe { background: rgba(142, 27, 27, 0.2); color: #8e1b1b; }
+.aqi-badge--good {
+  background: rgba(46, 204, 113, 0.18);
+  color: #1a8a50;
+}
+
+.aqi-badge--satisfactory {
+  background: rgba(124, 179, 66, 0.18);
+  color: #5a8c2a;
+}
+
+.aqi-badge--moderate {
+  background: rgba(226, 167, 30, 0.18);
+  color: #b5851a;
+}
+
+.aqi-badge--poor {
+  background: rgba(230, 126, 34, 0.18);
+  color: #c46614;
+}
+
+.aqi-badge--very-poor {
+  background: rgba(231, 76, 60, 0.18);
+  color: #c0392b;
+}
+
+.aqi-badge--severe {
+  background: rgba(142, 27, 27, 0.2);
+  color: #8e1b1b;
+}
 
 /* ─── Station List ──────────────────────────────────────────────── */
 .station-list {
@@ -590,7 +615,7 @@ body {
   border-radius: var(--radius-pill);
   min-width: 50px;
   text-align: center;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: var(--glass-shadow-inner);
 }
 
@@ -631,7 +656,7 @@ body {
   background: rgba(180, 200, 210, 0.2);
   border-radius: 30px;
   overflow: hidden;
-  box-shadow: inset 2px 2px 4px rgba(166, 180, 200, 0.2), inset -1px -1px 3px rgba(255,255,255,0.5);
+  box-shadow: inset 2px 2px 4px rgba(166, 180, 200, 0.2), inset -1px -1px 3px rgba(255, 255, 255, 0.5);
 }
 
 .importance-bar__fill {
@@ -684,47 +709,6 @@ body {
   padding: 4px 0;
 }
 
-/* ─── Map Controls (Zoom / Compass) ────────────────────────────── */
-.maplibregl-ctrl-bottom-right {
-  bottom: 20px !important;
-  right: 200px !important;
-}
-
-.maplibregl-ctrl-group {
-  background: var(--glass-bg-strong) !important;
-  backdrop-filter: var(--blur-strong) !important;
-  -webkit-backdrop-filter: var(--blur-strong) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: var(--radius-lg) !important;
-  box-shadow: var(--glass-shadow-outer) !important;
-  overflow: hidden !important;
-}
-
-.maplibregl-ctrl-group button {
-  width: 36px !important;
-  height: 36px !important;
-  border: none !important;
-  border-bottom: 1px solid var(--border) !important;
-  background: transparent !important;
-  transition: var(--transition) !important;
-}
-
-.maplibregl-ctrl-group button:last-child {
-  border-bottom: none !important;
-}
-
-.maplibregl-ctrl-group button:hover {
-  background: rgba(255, 255, 255, 0.6) !important;
-}
-
-.maplibregl-ctrl-group button:active {
-  background: rgba(255, 255, 255, 0.85) !important;
-}
-
-.maplibregl-ctrl-icon {
-  filter: opacity(0.75) contrast(1.2);
-}
-
 .map-popup__title {
   font-size: 0.85rem;
   font-weight: 600;
@@ -752,8 +736,8 @@ body {
 /* ─── Chat Panel ────────────────────────────────────────────────── */
 .chat-toggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 24px;
+  right: 414px;
   z-index: 100;
   width: 54px;
   height: 54px;
@@ -785,8 +769,8 @@ body {
 
 .chat-panel {
   position: fixed;
-  bottom: 84px;
-  right: 20px;
+  bottom: 90px;
+  right: 414px;
   z-index: 100;
   width: 380px;
   height: 480px;
@@ -807,6 +791,7 @@ body {
     opacity: 0;
     transform: translateY(16px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -837,13 +822,13 @@ body {
   padding: 6px 8px;
   border-radius: var(--radius-sm);
   transition: var(--transition);
-  box-shadow: 2px 2px 6px rgba(166, 180, 200, 0.15), -1px -1px 4px rgba(255,255,255,0.5);
+  box-shadow: 2px 2px 6px rgba(166, 180, 200, 0.15), -1px -1px 4px rgba(255, 255, 255, 0.5);
 }
 
 .chat-panel__close:hover {
   background: var(--glass-bg-strong);
   color: var(--text-primary);
-  box-shadow: 3px 3px 8px rgba(166, 180, 200, 0.2), -2px -2px 6px rgba(255,255,255,0.7);
+  box-shadow: 3px 3px 8px rgba(166, 180, 200, 0.2), -2px -2px 6px rgba(255, 255, 255, 0.7);
 }
 
 .chat-messages {
@@ -874,8 +859,15 @@ body {
 }
 
 @keyframes msgFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .chat-message--user {
@@ -958,7 +950,50 @@ body {
   transform: none;
 }
 
+/* ─── AQI Legend ────────────────────────────────────────────────── */
+.legend {
+  position: absolute;
+  bottom: 30px;
+  left: 16px;
+  z-index: 10;
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  box-shadow: var(--glass-shadow-outer);
+}
 
+.legend__title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.legend__scale {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.legend__segment {
+  width: 32px;
+  height: 10px;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.legend__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
 
 /* ─── Map Controls ──────────────────────────────────────────────── */
 .map-info {
@@ -995,8 +1030,17 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
 }
 
 /* ─── Loading State ─────────────────────────────────────────────── */
@@ -1019,7 +1063,9 @@ body {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading__text {
@@ -1085,22 +1131,40 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.sidebar-content > * {
+.sidebar-content>* {
   animation: fadeInUp 0.4s ease backwards;
 }
 
-.sidebar-content > *:nth-child(1) { animation-delay: 0.05s; }
-.sidebar-content > *:nth-child(2) { animation-delay: 0.1s; }
-.sidebar-content > *:nth-child(3) { animation-delay: 0.15s; }
-.sidebar-content > *:nth-child(4) { animation-delay: 0.2s; }
-.sidebar-content > *:nth-child(5) { animation-delay: 0.25s; }
-.sidebar-content > *:nth-child(6) { animation-delay: 0.3s; }
+.sidebar-content>*:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.sidebar-content>*:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.sidebar-content>*:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.sidebar-content>*:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.sidebar-content>*:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.sidebar-content>*:nth-child(6) {
+  animation-delay: 0.3s;
+}
 
 /* ─── Responsive ────────────────────────────────────────────────── */
 @media (max-width: 900px) {

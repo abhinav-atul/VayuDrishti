@@ -422,6 +422,10 @@ body {
   gap: 14px;
 }
 
+.sidebar-content > * {
+  flex-shrink: 0;
+}
+
 .sidebar-content::-webkit-scrollbar {
   width: 5px;
 }

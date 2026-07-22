@@ -196,28 +196,69 @@ body {
 }
 
 /* ─── Legend ──────────────────────────────────────────────────────── */
-.legend {
+.legend-wrapper {
   position: absolute;
   bottom: 24px;
-  right: 24px;
+  right: 90px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.legend-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
   background: var(--glass-bg-strong);
   backdrop-filter: var(--blur-strong);
   -webkit-backdrop-filter: var(--blur-strong);
-  padding: 16px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-outer);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.legend-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-outer), 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.legend-toggle__gradient {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2ecc71, #eab308, #ef4444, #8e1b1b);
+}
+
+.legend {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  padding: 14px;
   border-radius: var(--radius);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow-outer);
   font-size: 0.8rem;
-  z-index: 10;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+  width: 210px;
+  animation: fadeIn 0.2s ease-out;
 }
 
 .legend__title {
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
+  font-size: 0.75rem;
 }
 
 .legend__scale {
@@ -225,10 +266,10 @@ body {
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
-  width: 240px;
+  width: 100%;
 }
 
-.legend__scale-segment {
+.legend__segment {
   flex: 1;
 }
 
@@ -243,10 +284,10 @@ body {
 /* ─── Chat Feature ──────────────────────────────────────────────── */
 .chat-toggle {
   position: absolute;
-  bottom: 120px;
+  bottom: 24px;
   right: 24px;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: var(--glass-bg-strong);
   backdrop-filter: var(--blur-strong);
@@ -254,7 +295,7 @@ body {
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow-outer);
   color: var(--text-accent);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -264,13 +305,14 @@ body {
 }
 
 .chat-toggle:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: var(--glass-shadow-outer), 0 10px 20px rgba(74, 158, 142, 0.2);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--glass-shadow-outer), 0 6px 14px rgba(74, 158, 142, 0.2);
 }
 
 .chat-panel {
   position: absolute;
-  bottom: 190px;
+  bottom: 80px;
+  right: 24px;
   right: 24px;
   width: 360px;
   height: 400px;

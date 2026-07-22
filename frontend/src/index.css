@@ -459,9 +459,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
   pointer-events: none;
 }
 
@@ -490,6 +489,7 @@ body {
   color: var(--text-secondary);
   margin-bottom: 6px;
   position: relative;
+  z-index: 2;
 }
 
 .metric-card__value {
@@ -498,6 +498,7 @@ body {
   letter-spacing: -0.03em;
   line-height: 1;
   position: relative;
+  z-index: 2;
 }
 
 .metric-card__unit {
@@ -509,9 +510,10 @@ body {
 
 .metric-card__detail {
   font-size: 0.78rem;
-  color: var(--text-secondary);
-  margin-top: 6px;
+  color: var(--text-primary);
+  margin-top: 2px;
   position: relative;
+  z-index: 2;
   line-height: 1.5;
 }
 
@@ -642,9 +644,10 @@ body {
 }
 
 .importance-bar__label {
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-  width: 140px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  width: 155px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,5 +1,21 @@
-import { useState, useMemo } from "react";
-import { aqiColor, aqiBadgeClass, aqiCategory } from "../aqiUtils";
+const FEATURE_LABEL_MAP = {
+  industrial_proximity: "Industrial Proximity",
+  idw_pm25: "IDW Baseline PM2.5",
+  road_density: "Road Density",
+  nearest_station_dist_km: "Nearest Station Distance",
+  station_count_10km: "Station Count (10km)",
+  distance_to_highway_km: "Highway Distance",
+  nearest_station_pm25: "Nearest Station PM2.5",
+  satellite_so2: "Sentinel-5P SO₂",
+  satellite_no2: "Sentinel-5P NO₂",
+  distance_to_center_km: "City Center Distance",
+  fire_count_10km: "Fire Hotspots (10km)",
+  temperature: "Temperature",
+  humidity: "Relative Humidity",
+  wind_speed: "Wind Speed",
+  wind_direction: "Wind Direction",
+  pressure: "Surface Pressure",
+};
 
 /**
  * Sidebar — Station list, model stats, selected point details, feature importance.
@@ -210,14 +226,18 @@ export default function Sidebar({ stations, selectedPoint, metrics, onStationCli
                   </div>
                 </div>
 
+
+
                 <div className="metric-card metric-card--lavender">
+                  <div className="metric-card__label">LOSO Cross-Validation</div>
                   <div className="metric-card__detail">
-                    <strong>Leave-One-Station-Out:</strong> Each station was held out while the model trained on the remaining stations. The R² score shows prediction accuracy at locations the model has never seen.
+                    Each station was held out while training on remaining stations. Metrics prove prediction accuracy at unseen locations.
                   </div>
                 </div>
               </>
             ) : (
               <div className="metric-card metric-card--blush">
+                <div className="metric-card__label">LOSO Cross-Validation</div>
                 <div className="metric-card__detail">
                   No validation results yet. Train the model via the API to generate LOSO metrics.
                 </div>
@@ -233,7 +253,7 @@ export default function Sidebar({ stations, selectedPoint, metrics, onStationCli
                 {featureImportance.slice(0, 10).map((f) => (
                   <div key={f.feature} className="importance-bar">
                     <span className="importance-bar__label">
-                      {f.feature.replace(/_/g, " ")}
+                      {FEATURE_LABEL_MAP[f.feature] || f.feature.replace(/_/g, " ")}
                     </span>
                     <div className="importance-bar__track">
                       <div

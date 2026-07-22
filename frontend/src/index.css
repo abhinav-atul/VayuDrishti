@@ -415,6 +415,7 @@ body {
   flex: 1;
   overflow-y: auto;
   padding: 16px;
+  padding-bottom: 36px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -444,7 +445,7 @@ body {
   -webkit-backdrop-filter: var(--blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: 18px;
+  padding: 16px 18px;
   box-shadow: var(--glass-shadow-outer);
   transition: var(--transition);
   position: relative;
@@ -457,9 +458,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
   pointer-events: none;
 }
 

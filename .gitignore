@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.env
+
+# ML artifacts
+backend/app/ml/model.joblib
+backend/app/ml/validation_results.json
+backend/app/ml/shap_importance.json
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp

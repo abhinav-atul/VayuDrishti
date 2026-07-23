@@ -14,6 +14,8 @@ export default function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [tab, setTab] = useState("overview");
+  const [mapTheme, setMapTheme] = useState("light");
 
   // Load all data on mount
   useEffect(() => {
@@ -59,35 +61,8 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* Background Map Layer */}
       <div className="app__map">
-        {/* Logo Header */}
-        <div className="header">
-          <span className="header__icon">🌬️</span>
-          <div>
-            <div className="header__title">VayuDrishti</div>
-            <div className="header__subtitle">Hyperlocal Air Quality Intelligence</div>
-          </div>
-        </div>
-
-        {/* Map Info Badges */}
-        <div className="map-info">
-          <div className="map-info__badge">
-            <span className="map-info__dot" style={{ background: "#10b981" }} />
-            {stations.length} Stations
-          </div>
-          <div className="map-info__badge">
-            <span className="map-info__dot" style={{ background: "#f97316" }} />
-            {fires.length} Fire Hotspots
-          </div>
-          {gridData && (
-            <div className="map-info__badge">
-              <span className="map-info__dot" style={{ background: "#22d3ee" }} />
-              {gridData.features?.length || 0} Grid Cells
-            </div>
-          )}
-        </div>
-
-        {/* Main Map */}
         {loading ? (
           <div className="loading">
             <div className="loading__spinner" />
@@ -100,40 +75,86 @@ export default function App() {
             fires={fires}
             selectedPoint={selectedPoint}
             onMapClick={handleMapClick}
-          />
-        )}
-
-        {/* AQI Legend */}
-        <AQILegend />
-
-        {/* Chat Toggle */}
-        <button
-          className="chat-toggle"
-          onClick={() => setChatOpen(!chatOpen)}
-          title="Air Quality Advisory"
-          id="chat-toggle-btn"
-        >
-          {chatOpen ? "✕" : "💬"}
-        </button>
-
-        {/* Chat Panel */}
-        {chatOpen && (
-          <ChatPanel
-            selectedPoint={selectedPoint}
-            onClose={() => setChatOpen(false)}
+            mapTheme={mapTheme}
           />
         )}
       </div>
 
-      {/* Sidebar */}
+      {/* Top Navbar */}
+      <div className="top-nav">
+        <div className="top-nav__brand">
+          <span className="top-nav__logo">🌬️</span>
+          <span className="top-nav__title">VayuDrishti</span>
+        </div>
+        
+        <div className="tabs" style={{ padding: 0, width: '320px' }}>
+          <div className="tabs__container">
+            <button className={`tab ${tab === "overview" ? "tab--active" : ""}`} onClick={() => setTab("overview")}>Overview</button>
+            <button className={`tab ${tab === "stations" ? "tab--active" : ""}`} onClick={() => setTab("stations")}>Stations</button>
+            <button className={`tab ${tab === "model" ? "tab--active" : ""}`} onClick={() => setTab("model")}>Model</button>
+          </div>
+        </div>
+
+        <div className="top-nav__right">
+          <button 
+            className="tab tab--active" 
+            style={{ padding: '8px 16px', fontSize: '0.8rem', border: '1px solid var(--glass-border)' }}
+            onClick={() => setMapTheme(mapTheme === "light" ? "satellite" : "light")}
+          >
+            {mapTheme === "light" ? "🗺️ Satellite" : "🗺️ Light Map"}
+          </button>
+        </div>
+      </div>
+
+      {/* Floating Sidebar Panel */}
       <div className="app__sidebar">
         <Sidebar
           stations={stations}
           selectedPoint={selectedPoint}
           metrics={metrics}
           onStationClick={handleStationClick}
+          tab={tab}
         />
       </div>
+
+      {/* Map Info Badges (moved to top right under navbar) */}
+      <div className="map-info" style={{ top: '90px' }}>
+        <div className="map-info__badge">
+          <span className="map-info__dot" style={{ background: "#10b981" }} />
+          {stations.length} Stations
+        </div>
+        <div className="map-info__badge">
+          <span className="map-info__dot" style={{ background: "#f97316" }} />
+          {fires.length} Fire Hotspots
+        </div>
+        {gridData && (
+          <div className="map-info__badge">
+            <span className="map-info__dot" style={{ background: "#22d3ee" }} />
+            {gridData.features?.length || 0} Grid Cells
+          </div>
+        )}
+      </div>
+
+      {/* AQI Legend */}
+      <AQILegend />
+
+      {/* Chat Toggle & Panel */}
+      <button
+        className="chat-toggle"
+        onClick={() => setChatOpen(!chatOpen)}
+        title="Air Quality Advisory"
+        id="chat-toggle-btn"
+      >
+        {chatOpen ? "✕" : "💬"}
+      </button>
+
+      {/* Chat Panel */}
+      {chatOpen && (
+        <ChatPanel
+          selectedPoint={selectedPoint}
+          onClose={() => setChatOpen(false)}
+        />
+      )}
     </div>
   );
 }
